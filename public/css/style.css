@@ -1,0 +1,189 @@
+/* =====================================================
+   Simple Calculator — style.css
+   Mobile-first, light/minimal theme
+   WCAG 2.1 AA contrast throughout
+   ===================================================== */
+
+/* --- Reset & base ---------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+}
+
+/* --- Calculator shell ------------------------------ */
+.calculator {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  width: 100%;
+  max-width: 360px;
+  /* On very small screens fill the viewport */
+  min-width: 0;
+}
+
+/* --- Display --------------------------------------- */
+.display {
+  background-color: #1a1a2e;
+  padding: 16px 20px 12px;
+  text-align: right;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  word-break: break-all;
+}
+
+/* Expression row — smaller text, muted colour */
+.display__expression {
+  font-size: 0.9rem;
+  color: #a0a8c0;          /* contrast ~4.6:1 on #1a1a2e ✓ AA */
+  min-height: 1.2em;
+  line-height: 1.4;
+}
+
+/* Result row — large, prominent */
+.display__result {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;           /* contrast 14:1 on #1a1a2e ✓ AAA */
+  line-height: 1.2;
+}
+
+/* --- Button grid ----------------------------------- */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: #e0e0e0; /* gap colour */
+  padding: 1px;
+}
+
+/* --- Buttons --------------------------------------- */
+.btn {
+  /* minimum 48 × 48 px (NFR-03) */
+  min-width: 48px;
+  min-height: 56px;         /* slightly taller for comfort */
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.1s ease, background-color 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: -3px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Digit / decimal buttons */
+.btn--digit {
+  background-color: #ffffff;
+  color: #1a1a1a;           /* contrast 16:1 on white ✓ AAA */
+}
+
+.btn--digit:hover,
+.btn--digit:active {
+  background-color: #f5f5f5;
+}
+
+/* Operator buttons (÷ × − +) */
+.btn--operator {
+  background-color: #eef2ff;
+  color: #2d4db3;           /* contrast ~5.1:1 on #eef2ff ✓ AA */
+}
+
+.btn--operator:hover,
+.btn--operator:active {
+  background-color: #dde5ff;
+}
+
+/* Special buttons (AC, C, ⌫, √) */
+.btn--special {
+  background-color: #f5f5f5;
+  color: #333333;           /* contrast ~8.5:1 on #f5f5f5 ✓ AAA */
+}
+
+.btn--special:hover,
+.btn--special:active {
+  background-color: #e8e8e8;
+}
+
+/* AC gets a slightly stronger highlight */
+.btn[data-value="AC"] {
+  color: #c0392b;           /* contrast ~4.8:1 on #f5f5f5 ✓ AA */
+  font-weight: 700;
+}
+
+/* Equals button — accent colour, spans one cell */
+.btn--equals {
+  background-color: #2d4db3;
+  color: #ffffff;           /* contrast ~8.1:1 ✓ AAA */
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.btn--equals:hover,
+.btn--equals:active {
+  background-color: #1e3a9f;
+}
+
+/* Wide buttons in the extra row span 2 columns each */
+.btn--wide {
+  grid-column: span 2;
+}
+
+/* --- Responsive: at 320 px the grid is tight -------- */
+@media (max-width: 320px) {
+  .display__result {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    min-height: 52px;
+  }
+}
+
+/* --- Larger screens: expand a bit ------------------- */
+@media (min-width: 480px) {
+  .calculator {
+    border-radius: 20px;
+  }
+
+  .btn {
+    min-height: 64px;
+    font-size: 1.2rem;
+  }
+
+  .display__result {
+    font-size: 2.4rem;
+  }
+}
