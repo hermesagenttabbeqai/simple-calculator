@@ -1,6 +1,5 @@
-# Approval log
+# Approvals
 
-Every approval given for this project. The agent adds one line per approval.
-
-| Gate | Item | Version | Approved by | Date |
-|---|---|---|---|---|
+| Gate | Document | Version | Approver | Date       |
+|------|----------|---------|----------|------------|
+| G1   | BRD      | v1      | Mhmd H   | 2026-10-04 |
